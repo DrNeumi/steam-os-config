@@ -1,3 +1,5 @@
 [Mouse]
 XlIbInptAccelProfileFlat=true
 XLbInptPointerAcceleration=1
+[Keyboard]
+NumLock=1
