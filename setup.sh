@@ -5,30 +5,38 @@
 
 echo "Starting setup..."
 
-# The directory where this script is located (i.e., your Git repo folder)
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+# --- Step 1: Ensure Google Chrome is installed ---
+echo "Checking for Google Chrome..."
+if ! flatpak list | grep -q "com.google.Chrome"; then
+    echo "Google Chrome not found. Installing automatically..."
+    flatpak install -y flathub com.google.Chrome
+    echo "Google Chrome installation complete."
+else
+    echo "Google Chrome is already installed."
+fi
 
-# The target directory for most configuration files
-CONFIG_DIR="$HOME/.config"
 
-# --- Step 1: Create symbolic links for configuration files ---
+# --- Step 2: Create Symbolic Links ---
 echo "Linking configuration files..."
 
-# Panels, Desktops, etc.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+CONFIG_DIR="$HOME/.config"
+
 ln -sf "$SCRIPT_DIR/plasma-org.kde.plasma.desktop-appletsrc" "$CONFIG_DIR/plasma-org.kde.plasma.desktop-appletsrc"
 
-# Global settings (colors, fonts) - add the file to the repo first!
-# ln -sf "$SCRIPT_DIR/kdeglobals" "$CONFIG_DIR/kdeglobals"
 
-# Window Manager settings - add the file to the repo first!
-# ln -sf "$SCRIPT_DIR/kwinrc" "$CONFIG_DIR/kwinrc"
-
-# --- Step 2: Reminder for manual steps ---
+# --- Step 3: Finalizing Setup ---
 echo "-----------------------------------------------------------"
-echo "MANUAL STEPS REQUIRED:"
-echo "1. Restart Plasma or log out and back in."
-echo "2. Install the 'Control Centre 6' widget."
-echo "-----------------------------------------------------------"
+echo "Setup script finished."
+echo "A system reboot is recommended to ensure all changes are applied correctly."
 
+read -p "Do you want to reboot now? (y/n) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    echo "Rebooting in 5 seconds... (You may be asked for your sudo password)"
+    sleep 5
+    sudo reboot
+fi
 
-echo "Setup script finished!"
+echo "All done. Please reboot manually if you haven't."
