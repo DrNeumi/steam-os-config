@@ -66,7 +66,7 @@ DialogHeight=540
 DialogWidth=720
 
 [Containments][35][Applets][83][Configuration][General]
-launchers=applications:com.google.Chrome.flextop.chrome-caidcmannjgahlnbpmidmiecjcoiiigg-Default.desktop,applications:steam.desktop,applications:com.google.Chrome.desktop,applications:com.google.Chrome.flextop.chrome-kjbdgfilnfhdoflbpgamdcdgpehopbep-Default.desktop,preferred://filemanager,applications:com.google.Chrome.flextop.chrome-agimnkijcaahngcdmfeangaknmldooml-Default.desktop,applications:com.google.Chrome.flextop.chrome-fmgjjmmmlfnkbppncabfkddbjimcfncm-Default.desktop,applications:com.google.Chrome.flextop.chrome-hpfldicfbfomlpcikngkocigghgafkph-Default.desktop,applications:com.google.Chrome.flextop.chrome-mdpkiolbdkhdjpekfbkbmhigcaggjagi-Default.desktop,applications:com.google.Chrome.flextop.chrome-kjgfgldnnfoeklkmfkjfagphfepbbdan-Default.desktop
+launchers=applications:steam.desktop,applications:com.google.Chrome.desktop,preferred://filemanager
 
 [Containments][35][Applets][87]
 immutability=1
@@ -149,7 +149,7 @@ DialogHeight=540
 DialogWidth=720
 
 [Containments][55][Applets][83][Configuration][General]
-launchers=applications:com.google.Chrome.flextop.chrome-caidcmannjgahlnbpmidmiecjcoiiigg-Default.desktop,applications:steam.desktop,applications:com.google.Chrome.desktop,applications:com.google.Chrome.flextop.chrome-kjbdgfilnfhdoflbpgamdcdgpehopbep-Default.desktop,preferred://filemanager,applications:com.google.Chrome.flextop.chrome-agimnkijcaahngcdmfeangaknmldooml-Default.desktop,applications:com.google.Chrome.flextop.chrome-fmgjjmmmlfnkbppncabfkddbjimcfncm-Default.desktop,applications:com.google.Chrome.flextop.chrome-hpfldicfbfomlpcikngkocigghgafkph-Default.desktop,applications:com.google.Chrome.flextop.chrome-mdpkiolbdkhdjpekfbkbmhigcaggjagi-Default.desktop,applications:com.google.Chrome.flextop.chrome-kjgfgldnnfoeklkmfkjfagphfepbbdan-Default.desktop
+launchers=applications:steam.desktop,applications:com.google.Chrome.desktop,preferred://filemanager
 
 [Containments][55][Applets][87]
 immutability=1
