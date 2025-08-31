@@ -21,14 +21,14 @@ else
 fi
 
 
-# --- Step 3: Create Symbolic Links ---
-echo "Linking configuration files..."
+# --- Step 3: Copyconfiguration files ---
+echo "Copying configuration files..."
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
 CONFIG_DIR="$HOME/.config"
 
-ln -sf "$SCRIPT_DIR/plasma-org.kde.plasma.desktop-appletsrc" "$CONFIG_DIR/plasma-org.kde.plasma.desktop-appletsrc"
-ln -sf "$SCRIPT_DIR/kxkbrc" "$CONFIG_DIR/kxkbrc"
-ln -sf "$SCRIPT_DIR/kcminputrc" "$CONFIG_DIR/kcminputrc"
+cp "$SCRIPT_DIR/plasma-org.kde.plasma.desktop-appletsrc" "$CONFIG_DIR/plasma-org.kde.plasma.desktop-appletsrc"
+cp "$SCRIPT_DIR/kxkbrc" "$CONFIG_DIR/kxkbrc"
+cp "$SCRIPT_DIR/kcminputrc" "$CONFIG_DIR/kcminputrc"
 
 echo "Setup script finished."
