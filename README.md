@@ -1,66 +1,41 @@
 # My SteamOS Setup Configuration
 
-This repository contains all my personal configuration files and an automated setup script to restore my customized KDE Plasma desktop on a fresh SteamOS installation.
+This repository provides an automated script to restore my customized KDE Plasma desktop on a fresh SteamOS installation (`>= v3.7.13`).
+
+The process is designed to be as simple as possible. After a fresh install, you only need to perform two steps after reading the important notes below.
 
 ---
-## Fresh Install Checklist
+### ⚠️ Important: What This Script Will Do
 
-Follow these steps in order after a fresh installation of SteamOS.
+This is a fully automated script. Before running it, you should be aware of all the changes it will make to your system:
 
-### 1. Switch to Desktop Mode
-First, boot into Desktop Mode to access the full desktop environment.
+* **System Timezone:** Sets the system timezone to `Europe/Berlin`.
+* **Keyboard Layout:** Sets the default system-wide keyboard layout to **German (DE)**.
+* **Default Boot:** Configures the system to boot directly into **Desktop Mode** instead of Gaming Mode.
+* **Mouse Settings:** Applies custom mouse sensitivity and acceleration settings.
+* **Software Installation:** Installs Google Chrome via Flatpak if it's not already present.
+* **Configuration Files:** Copies a predefined set of KDE Plasma configurations for the taskbar, etc.
+* **System Reboot:** Automatically reboots the system after a 10-second countdown upon completion.
 
-### 2. Set a Sudo Password
-The `deck` user needs a password to perform administrative tasks. Open a terminal (`Konsole`) and set a password:
+---
+## Setup Instructions
+
+### Step 1: Set a Sudo Password
+
+This is the only required manual step. You will need this password for the script below.
+
+**❗️ SECURITY WARNING (Keyboard Layout):**
+The system starts with a default **US keyboard layout**. The script will automatically switch this to **German (DE)**. To avoid password problems after the script has run, please choose a password that is identical on both US and DE layouts (e.g., containing only letters and numbers, and avoiding symbols or the letters Z/Y, which are swapped).
+
+With this in mind, open a terminal (`Konsole`) and set your password:
 ```bash
 passwd
 ```
-Enter your desired password twice.
 
-### 3. Install Git
-Git is not installed by default. To install it, you need to disable the read-only filesystem and initialize the pacman keyring first.
+### Step 2: Run the Automated Installer
+
+Copy the command below, paste it into your Konsole, and press Enter. It will ask for the password you just set.
 ```bash
-# Disable read-only mode (enter your sudo password)
-sudo steamos-readonly disable
-
-# Initialize the pacman keyring
-sudo pacman-key --init
-sudo pacman-key --populate
-
-# Install Git
-sudo pacman -S --noconfirm git
+curl -L https://raw.githubusercontent.com/DrNeumi/steam-os-config/main/setup.sh | sudo bash
 ```
-
-### 4. Configure Git & GitHub Authentication
-First, tell Git who you are:
-```bash
-git config --global user.name "YourName"
-git config --global user.email "your.email@example.com"
-```
-Then, set up an SSH key for passwordless authentication with GitHub. This is the recommended method.
-```bash
-# Create a new SSH key
-ssh-keygen -t ed25519 -C "your.email@example.com"
-
-# Display the public key to copy it
-cat ~/.ssh/id_ed25519.pub
-```
-Copy the public key and add it to your GitHub account under **Settings > SSH and GPG keys > New SSH key**.
-
-### 5. Clone This Repository
-Now you can clone your configuration repository.
-```bash
-git clone git@github.com:DrNeumi/steam-os-config.git
-```
-Navigate into the directory:
-```bash
-cd steam-os-config
-```
-
-### 6. Run the Setup Script
-The final step is to execute the setup script, which will create all symbolic links and apply your custom configuration.
-```bash
-chmod +x setup.sh
-./setup.sh
-```
-After the script is finished, follow the manual steps it prompts, like restarting the Plasma shell. Your desktop is now fully restored!
+The script will now run automatically. After it is finished, the system will reboot. Your desktop will then be fully restored.
