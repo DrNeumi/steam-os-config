@@ -51,6 +51,7 @@ chown $THE_USER:$THE_USER "$CONFIG_DIR"
 sudo -u $THE_USER curl -Lo "$CONFIG_DIR/plasma-org.kde.plasma.desktop-appletsrc" "$REPO_BASE_URL/plasma-org.kde.plasma.desktop-appletsrc"
 sudo -u $THE_USER curl -Lo "$CONFIG_DIR/kxkbrc" "$REPO_BASE_URL/kxkbrc"
 sudo -u $THE_USER curl -Lo "$CONFIG_DIR/kcminputrc" "$REPO_BASE_URL/kcminputrc"
+sudo -u $THE_USER curl -Lo "$CONFIG_DIR/plasmashellrc" "$REPO_BASE_URL/plasmashellrc"
 echo "Configuration files applied."
 
 # --- Step 5: Hide Default Desktop Icons ---
