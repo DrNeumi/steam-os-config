@@ -1,0 +1,11 @@
+[PlasmaViews][Panel 35]
+floating=0
+
+[PlasmaViews][Panel 35][Defaults]
+thickness=50
+
+[PlasmaViews][Panel 55]
+floating=0
+
+[PlasmaViews][Panel 55][Defaults]
+thickness=50
