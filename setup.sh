@@ -8,11 +8,16 @@
 set -e
 
 # --- Preparation ---
+# Define colors for output
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
 echo "Starting fully automated setup..."
 
 # This script must be run via sudo, but we need the regular user's name and home directory
 THE_USER="deck"
 CONFIG_DIR="/home/$THE_USER/.config"
+DESKTOP_DIR="/home/$THE_USER/Desktop"
 REPO_BASE_URL="https://raw.githubusercontent.com/DrNeumi/steam-os-config/main"
 
 # --- Step 1: Prepare System ---
@@ -48,12 +53,31 @@ sudo -u $THE_USER curl -Lo "$CONFIG_DIR/kxkbrc" "$REPO_BASE_URL/kxkbrc"
 sudo -u $THE_USER curl -Lo "$CONFIG_DIR/kcminputrc" "$REPO_BASE_URL/kcminputrc"
 echo "Configuration files applied."
 
-# --- Step 5: Finalize and Reboot ---
+# --- Step 5: Hide Default Desktop Icons ---
+echo "Hiding default desktop icons..."
+
+# Hide Steam and Return to Gaming Mode icons by renaming them with a leading dot.
+# This is a non-destructive way to clean up the desktop.
+if [ -f "$DESKTOP_DIR/steam.desktop" ]; then
+    mv "$DESKTOP_DIR/steam.desktop" "$DESKTOP_DIR/.steam.desktop"
+fi
+if [ -f "$DESKTOP_DIR/Return.desktop" ]; then
+    mv "$DESKTOP_DIR/Return.desktop" "$DESKTOP_DIR/.Return.desktop"
+fi
+
+# --- Step 6: Finalize and Reboot ---
 echo "Re-enabling read-only mode..."
 sudo steamos-readonly enable
 
 echo "-----------------------------------------------------------"
-echo "SETUP COMPLETE! The system will automatically reboot in 10 seconds."
-echo "Press Ctrl+C to cancel the reboot."
-sleep 15
+echo "SETUP COMPLETE! A system reboot is required."
+echo "Press Ctrl+C to cancel the automatic reboot."
+echo
+
+# Countdown from 15 seconds
+for (( i=15; i>0; i-- )); do
+    printf "\r${YELLOW}Rebooting in %2d seconds...${NC}" "$i"
+    sleep 1
+done
+
 reboot
